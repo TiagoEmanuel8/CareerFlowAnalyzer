@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-
+# comentando para criar PR
 @lru_cache
 def read(path):
     """Reads a file from a given path and returns its contents
