@@ -18,18 +18,15 @@ def get_unique_job_types(path):
     """
     jobs = read(path)
 
-    type_jobs = {el['job_type'] for el in jobs if el['job_type'] != ""}
+    filtered_jobs = set()
+
+    [filtered_jobs.add(el['job_type']) for el in jobs if el['job_type'] != ""]
 
     # print(type_jobs)
 
-    return type_jobs
+    return filtered_jobs
 
 
-# mockando o arquivo csv
-# data = [{'job_type': 'CONTRACTOR'}, {'job_type': 'CONTRACTOR'},
-#   {'job_type': 'OTHER'}, {'job_type': 'PART_TIME'},
-#   {'job_type': 'PART_TIME'}, {'job_type': 'INTERN'}]
-# get_unique_job_types(data)
 # get_unique_job_types('src/jobs.csv')
 
 
@@ -65,12 +62,22 @@ def get_unique_industries(path):
     list
         List of unique industries
     """
-    # list_dict = read(path)
-    # ind_filter = []
-    # for ind in list_dict:
-    #     if not ind["industry"] in ind_filter and ind["industry"] != "":
-    #         ind_filter.append(ind["industry"])
-    # return ind_filter
+    jobs = read(path)
+
+    type_industries = set()
+
+    [
+        type_industries.add(el['industry'])
+        for el in jobs
+        if el['industry'] != ''
+    ]
+
+    # print(type_industries)
+
+    return type_industries
+
+
+# get_unique_industries('src/jobs.csv')
 
 
 def filter_by_industry(jobs, industry):
@@ -86,11 +93,11 @@ def filter_by_industry(jobs, industry):
     list
         List of jobs with provided industry
     """
-    # job_filter_by_ind = []
-    # for job in jobs:
-    #     if job["industry"] == industry:
-    #         job_filter_by_ind.append(job)
-    # return job_filter_by_ind
+    job_filter_by_ind = []
+    for job in jobs:
+        if job["industry"] == industry:
+            job_filter_by_ind.append(job)
+    return job_filter_by_ind
 
 
 def get_max_salary(path):
@@ -105,17 +112,17 @@ def get_max_salary(path):
     int
         The maximum salary paid out of all job opportunities
     """
-    # list_dict = read(path)
-    # salary_max = 0
-    # salary_list = list()
-    # for salary in list_dict:
-    #     if salary["max_salary"].isdigit():
-    #         salary_list.append(int(salary["max_salary"]))
+    jobs = read(path)
 
-    # for salary in salary_list:
-    #     if salary > salary_max:
-    #         salary_max = salary
-    # return salary_max
+    salaries = set()
+
+    [salaries.add(el['max_salary']) for el in jobs]
+
+    # print(salaries)
+
+    # print(max(salaries))
+
+    return max(salaries)
 
 
 def get_min_salary(path):
@@ -140,6 +147,14 @@ def get_min_salary(path):
     #     if salary < salary_min:
     #         salary_min = salary
     # return salary_min
+
+data = [
+  {'min_salary': 1200, 'max_salary': 2300},
+  {'min_salary': 3000, 'max_salary': 5000},
+  {'min_salary': 6000, 'max_salary': 8000},
+  {'min_salary': 9000, 'max_salary': 12000},
+]
+get_max_salary(data)
 
 
 def matches_salary_range(job, salary):
