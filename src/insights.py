@@ -1,4 +1,4 @@
-from jobs import read
+from src.jobs import read
 
 
 def get_unique_job_types(path):
@@ -103,11 +103,11 @@ def filter_by_industry(jobs, industry):
     list
         List of jobs with provided industry
     """
-    industries = set()
+    industries = list()
 
     [
 
-        industries.add(el['industry'])
+        industries.append(el)
 
         for el in jobs
 
@@ -136,7 +136,7 @@ def get_max_salary(path):
 
     salaries = set()
 
-    [salaries.add(int(el['max_salary'])) for el in jobs]
+    [salaries.add(int(el['max_salary'])) for el in jobs if el['max_salary'].isdigit()]
 
     # print(salaries)
 
@@ -161,7 +161,7 @@ def get_min_salary(path):
 
     salaries = set()
 
-    [salaries.add(int(el['min_salary'])) for el in jobs]
+    [salaries.add(int(el['min_salary'])) for el in jobs if el['min_salary'].isdigit()]
 
     # print(salaries)
 
