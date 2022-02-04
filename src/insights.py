@@ -48,10 +48,9 @@ def filter_by_job_type(jobs, job_type):
     """
     filter_job = [el for el in jobs if el['job_type'] == job_type]
 
+    # print(type_jobs)
+
     return filter_job
-
-
-# filter_by_job_type('src/jobs.csv')
 
 
 def get_unique_industries(path):
