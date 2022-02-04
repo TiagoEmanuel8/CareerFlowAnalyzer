@@ -136,7 +136,13 @@ def get_max_salary(path):
 
     salaries = set()
 
-    [salaries.add(int(el['max_salary'])) for el in jobs if el['max_salary'].isdigit()]
+    [
+        salaries.add(int(el['max_salary']))
+
+        for el in jobs if el['max_salary']
+
+        .isdigit()
+    ]
 
     # print(salaries)
 
@@ -161,7 +167,14 @@ def get_min_salary(path):
 
     salaries = set()
 
-    [salaries.add(int(el['min_salary'])) for el in jobs if el['min_salary'].isdigit()]
+    [
+        salaries.add(int(el['min_salary']))
+
+        for el in jobs
+
+        if el['min_salary'].isdigit()
+
+    ]
 
     # print(salaries)
 
