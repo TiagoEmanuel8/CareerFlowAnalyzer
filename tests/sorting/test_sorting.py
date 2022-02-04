@@ -1,32 +1,48 @@
-import pytest
 from src.sorting import sort_by
 
 
-@pytest.fixture
-def jobs():
-    """Mock de dados"""
-    return [
-        {
-            "min_salary": 500,
-            "max_salary": 4000,
-            "date_posted": "2022-01-28",
-        },
-        {
-            "min_salary": 1500,
-            "max_salary": 3000,
-            "date_posted": "2022-01-28",
-        },
-        {
-            "min_salary": 2000,
-            "max_salary": 1500,
-            "date_posted": "2022-01-28",
-        },
-    ]
+mock = [
+    {
+        "min_salary": 500,
+        "max_salary": 1500,
+        "date_posted": "2021-01-31",
+    },
+    {
+        "min_salary": 1000,
+        "max_salary": 2500,
+        "date_posted": "2021-01-30",
+    },
+    {
+        "min_salary": 1500,
+        "max_salary": 3000,
+        "date_posted": "2021-01-29",
+    }
+]
+
+ordered_date = [
+    mock[2], mock[1], mock[0]
+]
+
+ordered_min_salary = [
+    mock[0], mock[1], mock[2]
+]
+
+ordered_max_salary = [
+    mock[0], mock[1], mock[2]
+]
+
+criterios = ["date_posted", "max_salary", "min_salary"]
 
 
-def test_sort_by_criteria(jobs):
-    sort_by(jobs, "min_salary")
-    min_salary = []
-    for job in jobs:
-        min_salary.append(job["min_salary"])
-    assert min_salary == [500, 1500, 2000]
+def test_sort_by_criterios():
+    # testando a data
+    sort_by(mock, criterios[0])
+    assert mock == ordered_date
+
+    # teste de salário máximo
+    sort_by(mock, criterios[1])
+    assert mock == ordered_max_salary
+
+    # teste de salário mínimo
+    sort_by(mock, criterios[2])
+    assert mock == ordered_min_salary
