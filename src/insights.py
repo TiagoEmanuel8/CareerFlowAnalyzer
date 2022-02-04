@@ -116,7 +116,7 @@ def get_max_salary(path):
 
     salaries = set()
 
-    [salaries.add(el['max_salary']) for el in jobs]
+    [salaries.add(int(el['max_salary'])) for el in jobs]
 
     # print(salaries)
 
@@ -137,24 +137,27 @@ def get_min_salary(path):
     int
         The minimum salary paid out of all job opportunities
     """
-    # list_dict = read(path)
-    # salary_min = 100000
-    # salary_list = []
-    # for salary in list_dict:
-    #     if salary["min_salary"].isdigit():
-    #         salary_list.append(int(salary["min_salary"]))
-    # for salary in salary_list:
-    #     if salary < salary_min:
-    #         salary_min = salary
-    # return salary_min
+    jobs = read(path)
 
-data = [
-  {'min_salary': 1200, 'max_salary': 2300},
-  {'min_salary': 3000, 'max_salary': 5000},
-  {'min_salary': 6000, 'max_salary': 8000},
-  {'min_salary': 9000, 'max_salary': 12000},
-]
-get_max_salary(data)
+    salaries = set()
+
+    [salaries.add(int(el['min_salary'])) for el in jobs]
+
+    # print(salaries)
+
+    # print(min(salaries))
+
+    return min(salaries)
+
+
+# data = [
+#   {'min_salary': 1200, 'max_salary': 2300},
+#   {'min_salary': 3000, 'max_salary': 5000},
+#   {'min_salary': 6000, 'max_salary': 8000},
+#   {'min_salary': 9000, 'max_salary': 12000},
+# ]
+
+# get_min_salary(data)
 
 
 def matches_salary_range(job, salary):
