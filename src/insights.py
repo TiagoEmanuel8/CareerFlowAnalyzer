@@ -20,7 +20,15 @@ def get_unique_job_types(path):
 
     filtered_jobs = set()
 
-    [filtered_jobs.add(el['job_type']) for el in jobs if el['job_type'] != ""]
+    [
+
+        filtered_jobs.add(el['job_type'])
+
+        for el in jobs
+
+        if el['job_type'] != ""
+
+    ]
 
     # print(type_jobs)
 
@@ -41,7 +49,9 @@ def filter_by_job_type(jobs, job_type):
         List of jobs with provided job_type
     """
     filter_job = [
+
         el for el in jobs if el['job_type'] == job_type
+
     ]
 
     # print(type_jobs)
@@ -66,9 +76,13 @@ def get_unique_industries(path):
     type_industries = set()
 
     [
+
         type_industries.add(el['industry'])
+
         for el in jobs
+
         if el['industry'] != ''
+
     ]
 
     # print(type_industries)
@@ -92,9 +106,13 @@ def filter_by_industry(jobs, industry):
     industries = set()
 
     [
+
         industries.add(el['industry'])
+
         for el in jobs
+
         if el['industry'] == industry
+
     ]
 
     # print(industries)
@@ -173,14 +191,18 @@ def matches_salary_range(job, salary):
         If `salary` isn't a valid integer
     """
     if (
+
         # caso o campo salário não seja inteiro
         type(salary) != int
+
             # caso os campos não sejam passados
             or "min_salary" not in job
             or "max_salary" not in job
+
             # caso os campos salários não sejam do tipo inteiro
             or type(job["min_salary"]) != int
             or type(job["max_salary"]) != int
+
             # caso o valor mínimo seja maior que o salário máximo
             or job["min_salary"] > job["max_salary"]):
 
@@ -204,13 +226,18 @@ def filter_by_salary_range(jobs, salary):
     list
         Jobs whose salary range contains `salary`
     """
-    # filtered_salary_range = []
-    # for job in jobs:
-    #     if (
-    #         isinstance(salary, int)
-    #         and isinstance(job["min_salary"], int)
-    #         and isinstance(job["max_salary"], int)
-    #     ):
-    #         if job["min_salary"] <= salary <= job["max_salary"]:
-    #             filtered_salary_range.append(job)
-    # return filtered_salary_range
+    filtered_salary = []
+
+    for job in jobs:
+
+        try:
+
+            if matches_salary_range(job, salary):
+
+                filtered_salary.append(job)
+
+        except ValueError:
+
+            pass
+
+    return filtered_salary
