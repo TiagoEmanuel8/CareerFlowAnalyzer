@@ -1,33 +1,37 @@
-from src.jobs import read
-# from src.jobs import read
-# from src import jobs
-# import jobs
-
-
-# chamar a lista csv
-# criar a variavel da lista, só que vazia
-# fazer o laço para a lista se não tiver o tipo job type acrescente a lista
-# retorna tudo isso
+from jobs import read
 
 
 def get_unique_job_types(path):
     """Checks all different job types and returns a list of them
+
     Must call `read`
+
     Parameters
     ----------
     path : str
         Must be passed to `read`
+
     Returns
     -------
     list
         List of unique job types
     """
-    list_dict = read(path)
-    jobs_filter = []
-    for job in list_dict:
-        if not job["job_type"] in jobs_filter:
-            jobs_filter.append(job["job_type"])
-    return jobs_filter
+    jobs = read(path)
+
+    type_jobs = {el['job_type'] for el in jobs if el['job_type'] != ""}
+
+    # print(type_jobs)
+
+    return type_jobs
+
+
+# mockando o arquivo csv
+# data = [{'job_type': 'CONTRACTOR'}, {'job_type': 'CONTRACTOR'},
+#   {'job_type': 'OTHER'}, {'job_type': 'PART_TIME'},
+#   {'job_type': 'PART_TIME'}, {'job_type': 'INTERN'}]
+# get_unique_job_types(data)
+get_unique_job_types('src/jobs.csv')
+
 
 
 def filter_by_job_type(jobs, job_type):
@@ -43,11 +47,11 @@ def filter_by_job_type(jobs, job_type):
     list
         List of jobs with provided job_type
     """
-    jobs_filter = []
-    for job in jobs:
-        if job["job_type"] == job_type:
-            jobs_filter.append(job)
-    return jobs_filter
+    # jobs_filter = list()
+    # for job in jobs:
+    #     if job["job_type"] == job_type:
+    #         jobs_filter.append(job)
+    # return jobs_filter
 
 
 def get_unique_industries(path):
@@ -62,12 +66,12 @@ def get_unique_industries(path):
     list
         List of unique industries
     """
-    list_dict = read(path)
-    ind_filter = []
-    for ind in list_dict:
-        if not ind["industry"] in ind_filter and ind["industry"] != "":
-            ind_filter.append(ind["industry"])
-    return ind_filter
+    # list_dict = read(path)
+    # ind_filter = []
+    # for ind in list_dict:
+    #     if not ind["industry"] in ind_filter and ind["industry"] != "":
+    #         ind_filter.append(ind["industry"])
+    # return ind_filter
 
 
 def filter_by_industry(jobs, industry):
@@ -83,11 +87,11 @@ def filter_by_industry(jobs, industry):
     list
         List of jobs with provided industry
     """
-    job_filter_by_ind = []
-    for job in jobs:
-        if job["industry"] == industry:
-            job_filter_by_ind.append(job)
-    return job_filter_by_ind
+    # job_filter_by_ind = []
+    # for job in jobs:
+    #     if job["industry"] == industry:
+    #         job_filter_by_ind.append(job)
+    # return job_filter_by_ind
 
 
 def get_max_salary(path):
@@ -102,17 +106,17 @@ def get_max_salary(path):
     int
         The maximum salary paid out of all job opportunities
     """
-    list_dict = read(path)
-    salary_max = 0
-    salary_list = []
-    for salary in list_dict:
-        if salary["max_salary"].isdigit():
-            salary_list.append(int(salary["max_salary"]))
+    # list_dict = read(path)
+    # salary_max = 0
+    # salary_list = list()
+    # for salary in list_dict:
+    #     if salary["max_salary"].isdigit():
+    #         salary_list.append(int(salary["max_salary"]))
 
-    for salary in salary_list:
-        if salary > salary_max:
-            salary_max = salary
-    return salary_max
+    # for salary in salary_list:
+    #     if salary > salary_max:
+    #         salary_max = salary
+    # return salary_max
 
 
 def get_min_salary(path):
@@ -127,16 +131,16 @@ def get_min_salary(path):
     int
         The minimum salary paid out of all job opportunities
     """
-    list_dict = read(path)
-    salary_min = 100000
-    salary_list = []
-    for salary in list_dict:
-        if salary["min_salary"].isdigit():
-            salary_list.append(int(salary["min_salary"]))
-    for salary in salary_list:
-        if salary < salary_min:
-            salary_min = salary
-    return salary_min
+    # list_dict = read(path)
+    # salary_min = 100000
+    # salary_list = []
+    # for salary in list_dict:
+    #     if salary["min_salary"].isdigit():
+    #         salary_list.append(int(salary["min_salary"]))
+    # for salary in salary_list:
+    #     if salary < salary_min:
+    #         salary_min = salary
+    # return salary_min
 
 
 def matches_salary_range(job, salary):
@@ -159,22 +163,22 @@ def matches_salary_range(job, salary):
         If `job["min_salary"]` is greather than `job["max_salary"]`
         If `salary` isn't a valid integer
     """
-    if "min_salary" not in job or "max_salary" not in job:
-        raise ValueError("not found")
+    # if "min_salary" not in job or "max_salary" not in job:
+    #     raise ValueError("not found")
 
-    elif salary is None:
-        raise ValueError("not found")
+    # elif salary is None:
+    #     raise ValueError("not found")
 
-    elif not isinstance(job["min_salary"], int) or not isinstance(
-        job["max_salary"], int
-    ):
-        raise ValueError("not integer")
+    # elif not isinstance(job["min_salary"], int) or not isinstance(
+    #     job["max_salary"], int
+    # ):
+    #     raise ValueError("not integer")
 
-    elif job["min_salary"] > job["max_salary"]:
-        raise ValueError("value does not make sense")
+    # elif job["min_salary"] > job["max_salary"]:
+    #     raise ValueError("value does not make sense")
 
-    else:
-        return job["min_salary"] <= salary <= job["max_salary"]
+    # else:
+    #     return job["min_salary"] <= salary <= job["max_salary"]
 
 
 def filter_by_salary_range(jobs, salary):
@@ -190,13 +194,13 @@ def filter_by_salary_range(jobs, salary):
     list
         Jobs whose salary range contains `salary`
     """
-    filtered_salary_range = []
-    for job in jobs:
-        if (
-            isinstance(salary, int)
-            and isinstance(job["min_salary"], int)
-            and isinstance(job["max_salary"], int)
-        ):
-            if job["min_salary"] <= salary <= job["max_salary"]:
-                filtered_salary_range.append(job)
-    return filtered_salary_range
+    # filtered_salary_range = []
+    # for job in jobs:
+    #     if (
+    #         isinstance(salary, int)
+    #         and isinstance(job["min_salary"], int)
+    #         and isinstance(job["max_salary"], int)
+    #     ):
+    #         if job["min_salary"] <= salary <= job["max_salary"]:
+    #             filtered_salary_range.append(job)
+    # return filtered_salary_range

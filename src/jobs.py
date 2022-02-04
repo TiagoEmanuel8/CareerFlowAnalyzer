@@ -10,7 +10,8 @@ def read(path):
         list_dict = list(
             csv.DictReader(file_csv, delimiter=",", quotechar='"')
         )
+    # print(list_dict)
     return list_dict
 
 
-print('list_dict')
+read('src/jobs.csv')
