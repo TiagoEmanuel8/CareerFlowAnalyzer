@@ -30,8 +30,7 @@ def get_unique_job_types(path):
 #   {'job_type': 'OTHER'}, {'job_type': 'PART_TIME'},
 #   {'job_type': 'PART_TIME'}, {'job_type': 'INTERN'}]
 # get_unique_job_types(data)
-get_unique_job_types('src/jobs.csv')
-
+# get_unique_job_types('src/jobs.csv')
 
 
 def filter_by_job_type(jobs, job_type):
@@ -47,11 +46,12 @@ def filter_by_job_type(jobs, job_type):
     list
         List of jobs with provided job_type
     """
-    # jobs_filter = list()
-    # for job in jobs:
-    #     if job["job_type"] == job_type:
-    #         jobs_filter.append(job)
-    # return jobs_filter
+    filter_job = [el for el in jobs if el['job_type'] == job_type]
+
+    return filter_job
+
+
+# filter_by_job_type('src/jobs.csv')
 
 
 def get_unique_industries(path):
