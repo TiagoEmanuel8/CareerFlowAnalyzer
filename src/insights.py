@@ -43,7 +43,9 @@ def filter_by_job_type(jobs, job_type):
     list
         List of jobs with provided job_type
     """
-    filter_job = [el for el in jobs if el['job_type'] == job_type]
+    filter_job = [
+        el for el in jobs if el['job_type'] == job_type
+    ]
 
     # print(type_jobs)
 
@@ -148,16 +150,6 @@ def get_min_salary(path):
     # print(min(salaries))
 
     return min(salaries)
-
-
-# data = [
-#   {'min_salary': 1200, 'max_salary': 2300},
-#   {'min_salary': 3000, 'max_salary': 5000},
-#   {'min_salary': 6000, 'max_salary': 8000},
-#   {'min_salary': 9000, 'max_salary': 12000},
-# ]
-
-# get_min_salary(data)
 
 
 def matches_salary_range(job, salary):
