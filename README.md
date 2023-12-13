@@ -25,7 +25,7 @@
 
 ## Apresentação
 
-Desenvolvi o projeto utilizando a linguagem Python, durante o curso da [Trybe](https://www.betrybe.com/formacao-desenvolvimento-web).
+Desenvolvi o projeto utilizando a linguagem Python, durante o curso de desenvolvimento web fullstack na [Trybe](https://www.betrybe.com/formacao-desenvolvimento-web).
 
 Neste projeto você implementei análises a partir de um conjunto de dados sobre empregos. Suas implementações serão incorporadas a um aplicativo Web desenvolvido com Flask e também foram feitos testes para a implementação de uma análise de dados e foi feita uma rota e view para um recurso novo usando Flask!
 
