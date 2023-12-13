@@ -6,20 +6,9 @@
 - [Sumário](#sumário)
 - [Apresentação](#apresentação)
 - [Habilidades](#habilidades)
- - [Requisitos](#requisitos)
-      - [1 - Implemente a função `read`](#1---implemente-a-função-read)
-      - [2 - Implemente a função `get_unique_job_types`](#2---implemente-a-função-get_unique_job_types)
-      - [3 - Implemente a função `get_unique_industries`](#3---implemente-a-função-get_unique_industries)
-      - [4 - Implemente a função `get_max_salary`](#4---implemente-a-função-get_max_salary)
-      - [5 - Implemente a função `get_min_salary`](#5---implemente-a-função-get_min_salary)
-      - [6 - Implemente a função `filter_by_job_type`](#6---implemente-a-função-filter_by_job_type)
-      - [7 - Implemente a função `filter_by_industry`](#7---implemente-a-função-filter_by_industry)
-      - [8 - Implemente a função `matches_salary_range`](#8---implemente-a-função-matches_salary_range)
-      - [9 - Implemente a função `filter_by_salary_range`](#9---implemente-a-função-filter_by_salary_range)
-      - [10 - Implemente um teste para a função `sort_by`](#10---implemente-um-teste-para-a-função-sort_by)
-      - [11 - Implemente a página de um job](#11---implemente-a-página-de-um-job)
-  - [Linter](#linter)
- - [Testes](#testes)
+- [Requisitos](#requisitos)
+- [Linter](#linter)
+- [Testes](#testes)
 
 ---
 
